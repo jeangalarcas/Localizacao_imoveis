@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoImóveis RS/SC - Oportunidades Estratégicas</title>
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-geo-alt-fill"></i> GeoImóveis RS/SC
+            </a>
+            <div class="navbar-text">
+                <small>Última atualização: <span id="last-update">Carregando...</span></small>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <!-- Sidebar de Filtros -->
+            <div class="col-lg-3 col-xl-2 bg-light sidebar">
+                <div class="p-3">
+                    <!-- Seletor de Região -->
+                    <div class="mb-4">
+                        <h5 class="mb-3"><i class="bi bi-map"></i> Região</h5>
+                        <div class="btn-group-vertical w-100" id="region-selector">
+                            <button class="btn btn-outline-primary active" data-region="porto_alegre">
+                                <i class="bi bi-buildings"></i> Porto Alegre
+                            </button>
+                            <button class="btn btn-outline-primary" data-region="litoral_norte_rs">
+                                <i class="bi bi-water"></i> Litoral Norte RS
+                            </button>
+                            <button class="btn btn-outline-primary" data-region="litoral_sul_sc">
+                                <i class="bi bi-beach"></i> Litoral Sul SC
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filtros -->
+                    <div class="filter-section">
+                        <h5 class="mb-3"><i class="bi bi-funnel"></i> Filtros</h5>
+                        
+                        <!-- Busca por Endereço -->
+                        <div class="mb-3">
+                            <label class="form-label">Buscar Endereço</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="address-search" placeholder="Digite um endereço...">
+                                <button class="btn btn-primary" id="search-btn">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Tipo de Imóvel -->
+                        <div class="mb-3">
+                            <label class="form-label">Tipo de Imóvel</label>
+                            <select class="form-select" id="property-type">
+                                <option value="all">Todos os tipos</option>
+                                <option value="house">Casas</option>
+                                <option value="apartment">Apartamentos</option>
+                                <option value="land">Terrenos</option>
+                                <option value="commercial">Comercial</option>
+                            </select>
+                        </div>
+
+                        <!-- Faixa de Preço -->
+                        <div class="mb-3">
+                            <label class="form-label">Faixa de Preço (R$)</label>
+                            <select class="form-select" id="price-range">
+                                <option value="all">Todas as faixas</option>
+                                <option value="0-200000">Até R$ 200.000</option>
+                                <option value="200000-400000">R$ 200.000 - 400.000</option>
+                                <option value="400000-600000">R$ 400.000 - 600.000</option>
+                                <option value="600000-800000">R$ 600.000 - 800.000</option>
+                                <option value="800000-1000000">R$ 800.000 - 1.000.000</option>
+                                <option value="1000000+">Acima de R$ 1.000.000</option>
+                            </select>
+                        </div>
+
+                        <!-- Nível de Oportunidade -->
+                        <div class="mb-3">
+                            <label class="form-label">Nível de Oportunidade</label>
+                            <select class="form-select" id="opportunity-level">
+                                <option value="all">Todas as oportunidades</option>
+                                <option value="high">Alta Oportunidade</option>
+                                <option value="medium">Média Oportunidade</option>
+                                <option value="low">Baixa Oportunidade</option>
+                            </select>
+                        </div>
+
+                        <!-- Fonte dos Dados -->
+                        <div class="mb-3">
+                            <label class="form-label">Fonte</label>
+                            <select class="form-select" id="data-source">
+                                <option value="all">Todas as fontes</option>
+                                <option value="zap">ZAP Imóveis</option>
+                                <option value="viva">Viva Real</option>
+                                <option value="olx">OLX</option>
+                                <option value="leilao">Leilões</option>
+                            </select>
+                        </div>
+
+                        <!-- Botões de Ação -->
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" id="apply-filters">
+                                <i class="bi bi-check-circle"></i> Aplicar Filtros
+                            </button>
+                            <button class="btn btn-outline-secondary" id="reset-filters">
+                                <i class="bi bi-arrow-counterclockwise"></i> Limpar Filtros
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Estatísticas -->
+                    <div class="mt-4">
+                        <h5 class="mb-3"><i class="bi bi-graph-up"></i> Estatísticas</h5>
+                        <div class="stats-container">
+                            <div class="stat-item">
+                                <span class="stat-label">Total de Imóveis</span>
+                                <span class="stat-value" id="total-properties">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Alta Oportunidade</span>
+                                <span class="stat-value text-success" id="high-opportunity">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Preço Médio/m²</span>
+                                <span class="stat-value" id="avg-price-m2">R$ 0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Melhor Oportunidade</span>
+                                <span class="stat-value text-success" id="best-opportunity">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mapa e Lista -->
+            <div class="col-lg-9 col-xl-10">
+                <div class="row g-0">
+                    <!-- Mapa -->
+                    <div class="col-md-8">
+                        <div id="map"></div>
+                    </div>
+                    
+                    <!-- Lista de Resultados -->
+                    <div class="col-md-4">
+                        <div class="results-container">
+                            <div class="results-header p-3 bg-light border-bottom">
+                                <h5 class="mb-0">
+                                    <i class="bi bi-house"></i> 
+                                    <span id="results-title">Melhores Oportunidades</span>
+                                    <small class="text-muted" id="results-count">(0 imóveis)</small>
+                                </h5>
+                            </div>
+                            <div class="results-list" id="properties-list">
+                                <!-- Os imóveis serão carregados aqui -->
+                                <div class="text-center py-5">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Carregando...</span>
+                                    </div>
+                                    <p class="mt-2">Carregando oportunidades...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Detalhes -->
+    <div class="modal fade" id="propertyModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="propertyModalTitle">Detalhes do Imóvel</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="propertyModalBody">
+                    <!-- Conteúdo será preenchido via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/filters.js"></script>
+</body>
+</html>
