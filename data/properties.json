@@ -1,1 +1,135 @@
-
+{
+  "last_updated": "2024-01-15",
+  "total_properties": 150,
+  "properties": [
+    {
+      "id": "prop-poa-001",
+      "title": "Casa com 3 Quartos no Bela Vista",
+      "type": "house",
+      "price": 450000,
+      "area": 120,
+      "lat": -30.0311,
+      "lng": -51.2287,
+      "address": "Rua Coronel Bordini, 123 - Bela Vista, Porto Alegre",
+      "neighborhood": "Bela Vista",
+      "city": "Porto Alegre",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking_spaces": 2,
+      "value_per_m2": 3750,
+      "market_avg_m2": 4200,
+      "opportunity": "high",
+      "opportunity_score": 12.5,
+      "source": "zap",
+      "description": "Excelente casa em condomínio fechado, totalmente reformada, com acabamento de alto padrão. Próxima a escolas, shoppings e com fácil acesso às principais vias da cidade.",
+      "photos": [
+        "https://source.unsplash.com/random/600x400/?house,1",
+        "https://source.unsplash.com/random/600x400/?house,2"
+      ],
+      "features": ["Piscina", "Churrasqueira", "Área de serviço", "Quintal"],
+      "contact": {
+        "phone": "(51) 99999-9999",
+        "email": "corretor@exemplo.com"
+      },
+      "url": "https://www.zapimoveis.com.br/imovel/12345",
+      "created_at": "2024-01-10",
+      "updated_at": "2024-01-15"
+    },
+    {
+      "id": "prop-torres-001",
+      "title": "Apartamento com Vista para o Mar",
+      "type": "apartment",
+      "price": 380000,
+      "area": 65,
+      "lat": -29.3354,
+      "lng": -49.7304,
+      "address": "Av. Beira Mar, 456 - Centro, Torres",
+      "neighborhood": "Centro",
+      "city": "Torres",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking_spaces": 1,
+      "value_per_m2": 5846,
+      "market_avg_m2": 6500,
+      "opportunity": "high",
+      "opportunity_score": 11.2,
+      "source": "viva",
+      "description": "Apartamento com vista panorâmica para o mar, localizado a 200m da praia. Edifício com piscina, salão de festas e academia.",
+      "photos": [
+        "https://source.unsplash.com/random/600x400/?apartment,beach"
+      ],
+      "features": ["Vista para o mar", "Piscina", "Academia", "Salão de festas"],
+      "contact": {
+        "phone": "(51) 98888-8888",
+        "email": "imobiliaria@exemplo.com"
+      },
+      "url": "https://www.vivareal.com.br/imovel/67890",
+      "created_at": "2024-01-12",
+      "updated_at": "2024-01-15"
+    },
+    {
+      "id": "prop-florianopolis-001",
+      "title": "Cobertura Duplex na Lagoa",
+      "type": "apartment",
+      "price": 1200000,
+      "area": 180,
+      "lat": -27.6006,
+      "lng": -48.4773,
+      "address": "Rua das Gaivotas, 789 - Lagoa da Conceição, Florianópolis",
+      "neighborhood": "Lagoa da Conceição",
+      "city": "Florianópolis",
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "parking_spaces": 3,
+      "value_per_m2": 6666,
+      "market_avg_m2": 7500,
+      "opportunity": "medium",
+      "opportunity_score": 12.5,
+      "source": "olx",
+      "description": "Cobertura duplex com vista para a Lagoa da Conceição, terraço gourmet com churrasqueira e área de lazer completa. Acabamento premium.",
+      "photos": [
+        "https://source.unsplash.com/random/600x400/?penthouse"
+      ],
+      "features": ["Terraço gourmet", "Vista para lagoa", "3 vagas", "Acabamento premium"],
+      "contact": {
+        "phone": "(48) 97777-7777",
+        "email": "luxo@imoveis.com"
+      },
+      "url": "https://www.olx.com.br/imovel/54321",
+      "created_at": "2024-01-08",
+      "updated_at": "2024-01-15"
+    },
+    {
+      "id": "prop-leilao-001",
+      "title": "Terreno 500m² - Leilão",
+      "type": "land",
+      "price": 150000,
+      "area": 500,
+      "lat": -30.0455,
+      "lng": -51.1922,
+      "address": "Rua São Manoel, 321 - Rio Branco, Porto Alegre",
+      "neighborhood": "Rio Branco",
+      "city": "Porto Alegre",
+      "bedrooms": 0,
+      "bathrooms": 0,
+      "parking_spaces": 0,
+      "value_per_m2": 300,
+      "market_avg_m2": 500,
+      "opportunity": "high",
+      "opportunity_score": 66.7,
+      "source": "leilao",
+      "description": "Terreno plano, 15x33m, com documentação regularizada. Excelente localização, próximo ao centro e com fácil acesso.",
+      "photos": [
+        "https://source.unsplash.com/random/600x400/?land"
+      ],
+      "features": ["Documentação regular", "Plano", "Localização privilegiada"],
+      "contact": {
+        "phone": "(51) 96666-6666",
+        "email": "leiloes@banco.com"
+      },
+      "url": "https://www.leiloes.com.br/lote/123",
+      "created_at": "2024-01-05",
+      "updated_at": "2024-01-15"
+    }
+  ]
+}
