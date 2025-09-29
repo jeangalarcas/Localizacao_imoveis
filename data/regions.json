@@ -1,0 +1,32 @@
+{
+  "porto_alegre": {
+    "name": "Região Metropolitana de Porto Alegre",
+    "center": [-30.0346, -51.2177],
+    "zoom": 11,
+    "bounds": [
+      [-30.4, -51.4],
+      [-29.8, -50.8]
+    ],
+    "cities": ["Porto Alegre", "Canoas", "Novo Hamburgo", "São Leopoldo", "Gravataí", "Viamão", "Alvorada", "Cachoeirinha", "Esteio", "Sapucaia do Sul"]
+  },
+  "litoral_norte_rs": {
+    "name": "Litoral Norte do Rio Grande do Sul",
+    "center": [-29.9355, -50.0196],
+    "zoom": 10,
+    "bounds": [
+      [-30.2, -50.5],
+      [-29.5, -49.8]
+    ],
+    "cities": ["Torres", "Capão da Canoa", "Tramandaí", "Imbé", "Xangri-Lá", "Arroio do Sal", "Terra de Areia", "Três Cachoeiras", "Mampituba", "Morrinhos do Sul"]
+  },
+  "litoral_sul_sc": {
+    "name": "Litoral Sul de Santa Catarina",
+    "center": [-28.4811, -48.9884],
+    "zoom": 10,
+    "bounds": [
+      [-28.8, -49.4],
+      [-28.1, -48.6]
+    ],
+    "cities": ["Florianópolis", "Palhoça", "São José", "Garopaba", "Imbituba", "Laguna", "Tubarão", "Jaguaruna", "Paulo Lopes", "Governador Celso Ramos"]
+  }
+}
